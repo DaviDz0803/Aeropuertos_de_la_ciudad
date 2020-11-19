@@ -2,7 +2,7 @@ import 'dart:async'; //trabajar con datos sincronicos
 import 'package:aeropuertos_de_la_ciudad/Airport/model/airport.dart';
 
 class AirportBloc {
-  List<Airport> _airportList = [
+/*  List<Airport> _airportList = [
     Airport(
         26,
         "Kugaaruk Airport",
@@ -49,7 +49,7 @@ class AirportBloc {
         "airport",
         "OurAirports")
   ];
-
+*/
   // Streams Controller (estara esperando por la lisa de aeropuertos)
   final _airportListStreamController = StreamController<List<Airport>>();
 
@@ -60,10 +60,10 @@ class AirportBloc {
       _airportListStreamController.sink;
 
   // Constructor
-  AirportBloc() {
+/*  AirportBloc() {
     _airportListStreamController.add(_airportList);
   }
-
+*/
   // dispose
   void dispose() {
     _airportListStreamController.close();
