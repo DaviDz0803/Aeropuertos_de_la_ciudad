@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:aeropuertos_de_la_ciudad/Airport/model/airport.dart';
-import 'package:aeropuertos_de_la_ciudad/Airport/bloc/airportBloc.dart';
+import 'Airport/bloc/airport_list_bloc.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,12 +8,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final AirportBloc _airportBloc = AirportBloc();
+  final AirportListBloc _airportBloc = AirportListBloc();
 
   @override
   void dispose() {
     super.dispose();
-    _airportBloc.dispose();
+    //  _airportBloc.dispose();
   }
 
   @override
@@ -24,46 +24,46 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Container(
         child: StreamBuilder<List<Airport>>(
-            stream: _airportBloc.airportListStream,
+            //stream: _airportBloc.airportListStream,
             builder:
                 (BuildContext context, AsyncSnapshot<List<Airport>> snapshot) {
-              return ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 5.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.all(20.0),
-                          child: Text(
-                            "${snapshot.data[index].airportId}.",
-                            style: TextStyle(fontSize: 20.0),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(20.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                "${snapshot.data[index].airportName}",
-                                style: TextStyle(fontSize: 18.0),
-                              ),
-                              Text(
-                                "${snapshot.data[index].countryId}",
-                                style: TextStyle(fontSize: 16.0),
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
+          return ListView.builder(
+            itemCount: snapshot.data.length,
+            itemBuilder: (context, index) {
+              return Card(
+                elevation: 5.0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.all(20.0),
+                      child: Text(
+                        "${snapshot.data[index].airportId}.",
+                        style: TextStyle(fontSize: 20.0),
+                      ),
                     ),
-                  );
-                },
+                    Container(
+                      padding: EdgeInsets.all(20.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            "${snapshot.data[index].airportName}",
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+                          Text(
+                            "${snapshot.data[index].countryId}",
+                            style: TextStyle(fontSize: 16.0),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               );
-            }),
+            },
+          );
+        }),
       ),
     );
   }
