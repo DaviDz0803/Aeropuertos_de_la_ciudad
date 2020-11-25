@@ -10,11 +10,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final AirportListBloc _airportBloc = AirportListBloc();
 
-  @override
+  /* @override
   void dispose() {
     super.dispose();
     //  _airportBloc.dispose();
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +24,11 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Container(
         child: StreamBuilder<List<Airport>>(
-            //stream: _airportBloc.airportListStream,
+            //   stream:
             builder:
                 (BuildContext context, AsyncSnapshot<List<Airport>> snapshot) {
           return ListView.builder(
-            itemCount: snapshot.data.length,
+            itemCount: 10,
             itemBuilder: (context, index) {
               return Card(
                 elevation: 5.0,

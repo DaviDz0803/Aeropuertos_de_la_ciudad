@@ -6,3 +6,5 @@ abstract class AirportListEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class AllAirportsEvent {}
