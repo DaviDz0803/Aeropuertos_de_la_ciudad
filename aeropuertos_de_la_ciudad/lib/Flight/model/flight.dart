@@ -7,8 +7,8 @@ class AllFlights {
     if (jsonList == null) return;
 
     for (var item in jsonList) {
-      final flights = new Flight.fromJsonMap(item);
-      items.add(flights);
+      final flight = new Flight.fromJsonMap(item);
+      items.add(flight);
     }
   }
 }
