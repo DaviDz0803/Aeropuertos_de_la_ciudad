@@ -1,3 +1,4 @@
+import 'package:aeropuertos_de_la_ciudad/Flight/model/flight.dart';
 import 'package:dio/dio.dart';
 import 'package:aeropuertos_de_la_ciudad/Airport/model/airport.dart';
 
@@ -17,13 +18,14 @@ class ApiClient {
     return airports.items;
   }
 
-  Future<List<Airport>> getRoutes(
+  Future<List<Flight>> getRoutes(
       String originIATACode, String destinationIATACode) async {
     Uri uri = Uri.https(
         _url, 'routes/from/iata/$originIATACode/to/iata/$destinationIATACode');
     final response = await Dio().getUri(uri);
-    final routes = new AllRoutes.fromJsonList(response.data['data']);
-    print(routes.items);
-    return routes.items;
+
+    final flights = new AllFlights.fromJsonList(response.data['data']);
+    print(flights.items);
+    return flights.items;
   }
 }
