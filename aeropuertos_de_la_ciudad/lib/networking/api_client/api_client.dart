@@ -18,7 +18,7 @@ class ApiClient {
     return airports.items;
   }
 
-  Future<List<Flight>> getRoutes(
+  Future<List<Flight>> getFlights(
       String originIATACode, String destinationIATACode) async {
     Uri uri = Uri.https(
         _url, 'routes/from/iata/$originIATACode/to/iata/$destinationIATACode');
