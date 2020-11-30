@@ -36,3 +36,27 @@ class AirportListBloc extends Bloc<AirportListEvent, AirportListState> {
     }
   }
 }
+
+/*
+class AirportBloc {
+  final List<Airport> _list;
+  // Streams Controller (estara esperando por la lisa de aeropuertos)
+  final _airportListStreamController = StreamController<List<Airport>>();
+
+  // Getters: streams y sinks
+  Stream<List<Airport>> get airportListStream =>
+      _airportListStreamController.stream;
+  StreamSink<List<Airport>> get airportListSink =>
+      _airportListStreamController.sink;
+
+  // Constructor
+  AirportBloc() {
+    _airportListStreamController.add(_list);
+  }
+
+  // dispose
+  void dispose() {
+    _airportListStreamController.close();
+  }
+}
+*/
