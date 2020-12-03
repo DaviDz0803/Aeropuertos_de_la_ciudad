@@ -4,14 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:aeropuertos_de_la_ciudad/Airport/model/airport.dart';
 import 'Airport/bloc/airport_list_bloc.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final AirportListBloc bloc = BlocProvider.of<AirportListBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Aeropuertos de la Ciudad"),
@@ -21,50 +18,31 @@ class _HomePageState extends State<HomePage> {
         cubit: AirportListBloc(airportRepository: AirportRepository()),
         builder: (BuildContext context, AirportListState state) {
           print("State: $state");
-          if (state is AirportFetchSucess) {
+          if (state is AirportFetchingState) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is AirportFetchSucess) {
             print('Data ${state.airports}');
             return ListView.builder(
-              itemCount: 3, //state.airports.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  elevation: 5.0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.all(20.0),
-                        child: Text(
-                          "1", // "${state.airports[index].airportId}.",
-                          style: TextStyle(fontSize: 20.0),
-                        ),
-                      )
-                    ],
-                  ),
-                );
-              },
-            );
+                itemCount: state.airports.length,
+                scrollDirection: Axis.vertical,
+                itemBuilder: (BuildContext context, int index) {
+                  return Card(
+                    child: ListTile(
+                      leading: Text("${index}"),
+                      title: Text("507"),
+                      subtitle: Text('${state.airports[index].countryId}'),
+                      trailing: Text('${state.airports[index].iata}'),
+                    ),
+                  );
+                });
           } else
-            return Container();
+            return Container(
+              child: Text("Diaz"),
+            );
         },
       )),
     );
   }
 }
-
-/*                  Container(
-                    padding: EdgeInsets.all(20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-
-                        Text(
-                          "Kamloops Airport",
-                          style: TextStyle(fontSize: 18.0),
-                        ),
-                        Text(
-                          "Canada",
-                          style: TextStyle(fontSize: 16.0),
-                        )
-                      ],
-                    ),
-                  ),*/

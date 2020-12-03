@@ -9,21 +9,23 @@ import 'package:flutter/material.dart';
 part 'airport_list_event.dart';
 part 'airport_list_state.dart';
 
-class AirportListBloc extends Bloc<AirportListEvent, AirportListState> {
+class AirportListBloc extends Bloc<AllAirportsEvent, AirportListState> {
   final AirportRepository airportRepository;
-  AirportListBloc({this.airportRepository}) : super(AirportListInitial());
+  AirportListBloc({this.airportRepository}) : super(AirportFetchingState());
 
   @override
-  AirportListState get initialState => AirportListInitial();
+  AirportListState get initialState => AirportFetchingState();
 
   @override
   Stream<AirportListState> mapEventToState(
-    AirportListEvent event,
+    AllAirportsEvent event,
   ) async* {
+    print("mapEventToState");
+    print(event);
     yield AirportFetchingState();
     List<Airport> airports;
     try {
-      if (event is AllAirportsEvent) {
+      if (event == AllAirportsEvent.loadSuccess) {
         airports = await airportRepository.getAirports();
       }
       if (airports.length == 0) {
@@ -32,31 +34,8 @@ class AirportListBloc extends Bloc<AirportListEvent, AirportListState> {
         yield AirportFetchSucess(airports: airports);
       }
     } catch (_) {
+      print("error");
       yield AirportError();
     }
   }
 }
-
-/*
-class AirportBloc {
-  final List<Airport> _list;
-  // Streams Controller (estara esperando por la lisa de aeropuertos)
-  final _airportListStreamController = StreamController<List<Airport>>();
-
-  // Getters: streams y sinks
-  Stream<List<Airport>> get airportListStream =>
-      _airportListStreamController.stream;
-  StreamSink<List<Airport>> get airportListSink =>
-      _airportListStreamController.sink;
-
-  // Constructor
-  AirportBloc() {
-    _airportListStreamController.add(_list);
-  }
-
-  // dispose
-  void dispose() {
-    _airportListStreamController.close();
-  }
-}
-*/

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+/*
 /// This is the stateful widget that the main application instantiates.
 class FlightView extends StatefulWidget {
   FlightView({Key key}) : super(key: key);
@@ -42,3 +42,4 @@ class _FlightViewState extends State<FlightView> {
     );
   }
 }
+*/
