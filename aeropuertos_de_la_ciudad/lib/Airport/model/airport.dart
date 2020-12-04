@@ -1,9 +1,9 @@
-class AllAirports {
+class Airports {
   List<Airport> items = new List();
 
-  AllAirports();
+  Airports();
 
-  AllAirports.fromJsonList(List<dynamic> jsonList) {
+  Airports.fromJsonList(List<dynamic> jsonList) {
     if (jsonList == null) return;
 
     for (var item in jsonList) {
@@ -14,53 +14,46 @@ class AllAirports {
 }
 
 class Airport {
-  int airportId;
-  String airportName;
-  String city;
-  String countryId;
   String iata;
+  String name;
+  String city;
+  String country;
   String icao;
-  double latitude;
-  double longitude;
-  double altitude;
-  double timezone;
+  String latitude;
+  String longitude;
+  String altitude;
+  int timezone;
   String dst;
-  String tzDatabaseTimeZone;
-  String airportType;
+  String type;
   String source;
 
-  //Constructor
   Airport({
-    this.airportId,
-    this.airportName,
-    this.city,
-    this.countryId,
     this.iata,
+    this.name,
+    this.city,
+    this.country,
     this.icao,
     this.latitude,
     this.longitude,
     this.altitude,
     this.timezone,
     this.dst,
-    this.tzDatabaseTimeZone,
-    this.airportType,
+    this.type,
     this.source,
   });
 
   Airport.fromJsonMap(Map<String, dynamic> json) {
-    airportId = json['airportId'];
-    airportName = json['airportName'];
+    iata = json['IATA'];
+    name = json['name'];
     city = json['city'];
-    countryId = json['countryId'];
-    iata = json['iata'];
-    icao = json['icao'];
+    country = json['country'];
+    icao = json['ICAO'];
     latitude = json['latitude'];
     longitude = json['longitude'];
     altitude = json['altitude'];
     timezone = json['timezone'];
     dst = json['dst'];
-    tzDatabaseTimeZone = json['tzDatabaseTimeZone'];
-    airportType = json['airportType'];
+    type = json['type'];
     source = json['source'];
   }
 }

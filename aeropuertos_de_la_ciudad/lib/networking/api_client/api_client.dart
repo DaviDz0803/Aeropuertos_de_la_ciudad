@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:aeropuertos_de_la_ciudad/Airport/model/airport.dart';
 
 class ApiClient {
-  String _url = "https://airports-of-the-world.herokuapp.com";
+  String _url = "airports-of-the-world.herokuapp.com";
 
   Future<List<Airport>> getAirports() async {
     Uri uri = Uri.https(
@@ -12,8 +12,7 @@ class ApiClient {
     );
     final response = await Dio().getUri(uri);
 
-    final airports =
-        new AllAirports.fromJsonList(response.data['data']['data']);
+    final airports = new Airports.fromJsonList(response.data['data']['data']);
     print(airports.items);
     return airports.items;
   }

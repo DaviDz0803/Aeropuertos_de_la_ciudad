@@ -20,8 +20,6 @@ class AirportListBloc extends Bloc<AllAirportsEvent, AirportListState> {
   Stream<AirportListState> mapEventToState(
     AllAirportsEvent event,
   ) async* {
-    print("mapEventToState");
-    print(event);
     yield AirportFetchingState();
     List<Airport> airports;
     try {
@@ -33,8 +31,9 @@ class AirportListBloc extends Bloc<AllAirportsEvent, AirportListState> {
       } else {
         yield AirportFetchSucess(airports: airports);
       }
-    } catch (_) {
-      print("error");
+    } catch (error, traceback) {
+      print("ERROR: $error");
+      print("TRACEBACK: $traceback");
       yield AirportError();
     }
   }

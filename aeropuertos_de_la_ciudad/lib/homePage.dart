@@ -13,9 +13,8 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Aeropuertos de la Ciudad"),
       ),
-      body: Container(
-          child: BlocBuilder<AirportListBloc, AirportListState>(
-        cubit: AirportListBloc(airportRepository: AirportRepository()),
+      body: Container(child: BlocBuilder<AirportListBloc, AirportListState>(
+        // cubit: AirportListBloc(airportRepository: AirportRepository()),
         builder: (BuildContext context, AirportListState state) {
           print("State: $state");
           if (state is AirportFetchingState) {
@@ -30,16 +29,15 @@ class HomePage extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
                     child: ListTile(
-                      leading: Text("${index}"),
-                      title: Text("507"),
-                      subtitle: Text('${state.airports[index].countryId}'),
+                      title: Text("${state.airports[index].name}"),
+                      subtitle: Text('${state.airports[index].country}'),
                       trailing: Text('${state.airports[index].iata}'),
                     ),
                   );
                 });
           } else
             return Container(
-              child: Text("Diaz"),
+              child: Text("error"),
             );
         },
       )),
