@@ -29,9 +29,9 @@ class HomePage extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
                     child: ListTile(
+                      leading: Text('${state.airports[index].iata}'),
                       title: Text("${state.airports[index].name}"),
                       subtitle: Text('${state.airports[index].country}'),
-                      trailing: Text('${state.airports[index].iata}'),
                     ),
                   );
                 });
