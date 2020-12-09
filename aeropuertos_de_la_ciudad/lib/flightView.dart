@@ -1,45 +1,44 @@
 import 'package:flutter/material.dart';
-/*
-/// This is the stateful widget that the main application instantiates.
-class FlightView extends StatefulWidget {
-  FlightView({Key key}) : super(key: key);
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'Airport/bloc/airport_list_bloc.dart';
 
+class FlightView extends StatelessWidget {
+  void _submit() {}
   @override
-  _FlightViewState createState() => _FlightViewState();
-}
-
-class _FlightViewState extends State<FlightView> {
-  final _controller = TextEditingController();
-
-  void initState() {
-    super.initState();
-    _cotroller.addListener(() {
-      final text = _controller.text.toLowerCase();
-      _controller.value = _controller.value.copyWith(
-        text: text,
-        selection:
-            TextSelection(baseOffset: text.length, extentOffset: text.length),
-        composing: TextRange.empty,
-      );
-    });
-  }
-
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.all(6),
-        child: TextFormField(
-          controller: _controller,
-          decoration: InputDecoration(border: OutlineInputBorder()),
+        appBar: AppBar(
+          title: Text("Aeropuertos de la Ciudad"),
         ),
-      ),
-    );
+        body: Column(
+          children: [
+            Padding(padding: EdgeInsets.only(top: 20)),
+            TextField(
+              autofocus: true,
+              decoration: InputDecoration(
+                labelStyle: TextStyle(fontSize: 21.0),
+                labelText: 'Origin',
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                hintText: 'Write IATA',
+              ),
+            ),
+            Padding(padding: EdgeInsets.only(top: 20)),
+            TextField(
+              autofocus: true,
+              decoration: InputDecoration(
+                labelStyle: TextStyle(fontSize: 21.0),
+                labelText: 'Destination',
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                hintText: 'Write IATA',
+              ),
+            ),
+            RaisedButton(
+              onPressed: _submit,
+              child: Text("submit"),
+            ),
+          ],
+        ));
   }
 }
-*/
